@@ -42,7 +42,7 @@ class VectorStoreService:
                 for line in f.readlines():
                     line = line.strip()
                     if line==md5_for_check:
-                        return True #ma5处理过
+                        return True #md5处理过
                 return False
 
         def save_md5_hex(md5_for_check:str):

@@ -1,0 +1,19 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+.env.local
+.git
+.gitignore
+README.md
+.vscode
+.idea
+venv
+env
+chroma_db   # 注意：如果你希望保留向量数据库的持久化，不要忽略它，而是用 volume 挂载

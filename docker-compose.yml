@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  knowledge-assistant:
+    build: .
+    container_name: fastapi-knowledge-assistant
+    ports:
+      - "8000:8000"
+    volumes:
+      # 挂载向量数据库目录，实现持久化
+      - ./chroma_db:/app/chroma_db
+      # 如果需要在运行时修改前端文件（开发用），也可以挂载 frontend/dist
+      # - ./frontend/dist:/app/frontend/dist
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}   # 从宿主环境变量读取
+      - LANGSMITH_API_KEY=${LANGSMITH_API_KEY}  # 如果需要
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
